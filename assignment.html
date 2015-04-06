@@ -1,0 +1,208 @@
+
+<head>
+<meta charset="utf-8">
+<title>Movies Review Page!</title>
+<! Bootstrap 3 -->
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+    </style>
+
+       <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile, .trailer', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // Animate in the movies when the page loads
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+
+        
+    </script>
+<head>
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Page Content -->
+    <div class="container-fluid">
+      <div class="navbar navbar-default navbar-fixed-top" id="nav">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+               <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+            </button>
+            <img alt="Brand" src="http://cdn-img.easyicon.net/png/5344/534400.png" width="50px">
+          </div>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li id="header"></li>
+      </ul>
+      
+    </div>
+  </div>
+      </div>
+    </div>
+    
+    <div class="container-fluid">
+      
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="ZZv1vki4ou4" data-toggle="modal" data-target="#trailer" >
+    <img src="http://images.m-magazine.com/uploads/posts/image/46533/toy-story-hotel.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Toy Story</p><p class="text-primary" id="description">Synopsis:A kid who loves toys that come to life</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="cRdxXPV9GNQ" data-toggle="modal" data-target="#trailer" >
+    <img src="http://www.jpveenendaal.nl/opdracht8/film_paginas/cover_avatar.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Avatar</p><p class="text-primary" id="description">Synopsis:A marine on an alien planet</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="2iQuhsmtfHw" data-toggle="modal" data-target="#trailer" >
+    <img src="http://ia.media-imdb.com/images/M/MV5BMTY3NTY0MjEwNV5BMl5BanBnXkFtZTcwNTE3NDA1OA@@._V1_SY317_CR15,0,214,317_AL_.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Looper</p><p class="text-primary" id="description">Synopsis:Who one day learns the mob wants to 'close the loop' by sending back Joe's future self for assassination.</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="m4NCribDx4U" data-toggle="modal" data-target="#trailer" >
+    <img src="http://ia.media-imdb.com/images/M/MV5BMTkxMjgwMDM4Ml5BMl5BanBnXkFtZTgwMTk3NTIwNDE@._V1_SY209_CR0,0,140,209_AL_.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Kingsman: The Secret Service</p><p class="text-primary" id="description">Synopsis:A spy organization recruits unrefined, but promising street kid into the agency's ultra-competitive training program, just as a global threat emerges from a twisted tech genius</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="MxCRgtdAuBo" data-toggle="modal" data-target="#trailer" >
+    <img src="http://ia.media-imdb.com/images/M/MV5BMTUwODg2OTA4OF5BMl5BanBnXkFtZTgwOTE5MTE4MzE@._V1_SY209_CR0,0,140,209_AL_.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Focus</p><p class="text-primary" id="description">Synopsis:In the midst of veteran con man Nicky's latest scheme, a woman from his past - now an accomplished femme fatale - shows up and throws his plans for a loop</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="lyy7y0QOK-0" data-toggle="modal" data-target="#trailer" >
+    <img src="http://ia.media-imdb.com/images/M/MV5BMTUyNTI4NTIwNl5BMl5BanBnXkFtZTgwMjQ4MTI0NDE@._V1_SY209_CR0,0,140,209_AL_.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Chappie</p><p class="text-primary" id="description">Synopsis:In the near future, crime is patrolled by a mechanized police force. When one police droid, Chappie is stolen and given new programming, he becomes the first robot with the ability to think and feel for himself</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="WRuHM6rLSF8" data-toggle="modal" data-target="#trailer" >
+    <img src="http://ia.media-imdb.com/images/M/MV5BMjMxODYyODEzN15BMl5BanBnXkFtZTgwMDk4OTU0MzE@._V1_SY209_CR0,0,140,209_AL_.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Cinderella</p><p class="text-primary" id="description">Synopsis:When her father unexpectedly passes away, young Ella finds herself at the mercy of her cruel stepmother and her daughters. Never one to give up hope, Ella's fortunes begin to change after meeting a dashing stranger</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="5bP1f_1o-zo" data-toggle="modal" data-target="#trailer" >
+    <img src="http://static.dnaindia.com/sites/default/files/2014/12/22/294559-army1.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">American Sniper</p><p class="text-primary" id="description">Synopsis:Navy SEAL sniper Chris Kyle's pinpoint accuracy saves countless lives on the battlefield and turns him into a legend. Back home to his wife and kids after four tours of duty, however, Chris finds that it is the war he can't leave behind.</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="ZZv1vki4ou4" data-toggle="modal" data-target="#trailer" >
+    <img src="http://images.m-magazine.com/uploads/posts/image/46533/toy-story-hotel.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Toy Story</p><p class="text-primary" id="description">Synopsis:A kid who loves toys that come to life</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="cRdxXPV9GNQ" data-toggle="modal" data-target="#trailer" >
+    <img src="http://www.jpveenendaal.nl/opdracht8/film_paginas/cover_avatar.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Avatar</p><p class="text-primary" id="description">Synopsis:A marine on an alien planet</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="2iQuhsmtfHw" data-toggle="modal" data-target="#trailer" >
+    <img src="http://ia.media-imdb.com/images/M/MV5BMTY3NTY0MjEwNV5BMl5BanBnXkFtZTcwNTE3NDA1OA@@._V1_SY317_CR15,0,214,317_AL_.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Looper</p><p class="text-primary" id="description">Synopsis:Who one day learns the mob wants to 'close the loop' by sending back Joe's future self for assassination.</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="m4NCribDx4U" data-toggle="modal" data-target="#trailer" >
+    <img src="http://ia.media-imdb.com/images/M/MV5BMTkxMjgwMDM4Ml5BMl5BanBnXkFtZTgwMTk3NTIwNDE@._V1_SY209_CR0,0,140,209_AL_.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Kingsman: The Secret Service</p><p class="text-primary" id="description">Synopsis:A spy organization recruits unrefined, but promising street kid into the agency's ultra-competitive training program, just as a global threat emerges from a twisted tech genius</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="MxCRgtdAuBo" data-toggle="modal" data-target="#trailer" >
+    <img src="http://ia.media-imdb.com/images/M/MV5BMTUwODg2OTA4OF5BMl5BanBnXkFtZTgwOTE5MTE4MzE@._V1_SY209_CR0,0,140,209_AL_.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Focus</p><p class="text-primary" id="description">Synopsis:In the midst of veteran con man Nicky's latest scheme, a woman from his past - now an accomplished femme fatale - shows up and throws his plans for a loop</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="lyy7y0QOK-0" data-toggle="modal" data-target="#trailer" >
+    <img src="http://ia.media-imdb.com/images/M/MV5BMTUyNTI4NTIwNl5BMl5BanBnXkFtZTgwMjQ4MTI0NDE@._V1_SY209_CR0,0,140,209_AL_.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Chappie</p><p class="text-primary" id="description">Synopsis:In the near future, crime is patrolled by a mechanized police force. When one police droid, Chappie is stolen and given new programming, he becomes the first robot with the ability to think and feel for himself</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="WRuHM6rLSF8" data-toggle="modal" data-target="#trailer" >
+    <img src="http://ia.media-imdb.com/images/M/MV5BMjMxODYyODEzN15BMl5BanBnXkFtZTgwMDk4OTU0MzE@._V1_SY209_CR0,0,140,209_AL_.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">Cinderella</p><p class="text-primary" id="description">Synopsis:When her father unexpectedly passes away, young Ella finds herself at the mercy of her cruel stepmother and her daughters. Never one to give up hope, Ella's fortunes begin to change after meeting a dashing stranger</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+<div class="col-xs-6 movie-tile text-left" data-trailer-youtube-id="5bP1f_1o-zo" data-toggle="modal" data-target="#trailer" >
+    <img src="http://static.dnaindia.com/sites/default/files/2014/12/22/294559-army1.jpg" align="left" width="220" height="245"></img>
+    <p id="movie-title">American Sniper</p><p class="text-primary" id="description">Synopsis:Navy SEAL sniper Chris Kyle's pinpoint accuracy saves countless lives on the battlefield and turns him into a legend. Back home to his wife and kids after four tours of duty, however, Chris finds that it is the war he can't leave behind.</p><h2 class="trailer"><img src="http://judymoodymovie.com/mobile/_img/watch_trailer.png" width="140px"></img></h2>
+</div>
+
+    </div>
+  </body>
+</html>
